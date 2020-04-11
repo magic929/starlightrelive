@@ -23,6 +23,7 @@ types = ["TEXT", "TEXT", "INTEGER", "INTEGER", "INTEGER", "INTEGER", "TEXT", "IN
         "TEXT", "TEXT", "TEXT", "TIMESTAMP", "TEXT",
         "INTEGER", "INTEGER", "TEXT"]
 
+primary = 'ID'
 
 def append_suffix(matched):
     tempstr = matched.group()
@@ -56,7 +57,7 @@ def read_file(path):
 
 def insert_dress(data):
     dress = Sqlite("starlightRe.db")
-    dress.create("dress", field, types)
+    dress.create("dress", field, types, primary)
     dress.insert("dress", data)
     dress.close()
 

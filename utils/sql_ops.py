@@ -5,11 +5,11 @@ class Sqlite():
         self.conn = sqlite3.connect(db)
         self.c = self.conn.cursor()
     
-    def create(self, table, cols, types):
+    def create(self, table, cols, types, primary):
         ct = []
         for c, t in zip(cols, types):
             ct.append("{} {}".format(c, t))
-        sqls = 'CREATE TABLE IF NOT EXISTS {} ({})'.format(table, ','.join(ct))
+        sqls = 'CREATE TABLE IF NOT EXISTS {} ({}, PRIMARY KEY ({}))'.format(table, ','.join(ct), primary)
         try: 
             self.c.execute(sqls)
         except Exception as e:
@@ -18,7 +18,7 @@ class Sqlite():
         return 1
 
     def insert(self, table, data):
-        sqls = 'INSERT INTO ' + table + ' VALUES ({}?)'.format('?,'*(len(data[0]) - 1))
+        sqls = 'INSERT OR IGNORE INTO ' + table + ' VALUES ({}?)'.format('?,'*(len(data[0]) - 1))
         print(sqls)
         try:
             self.c.executemany(sqls, iter(data))
