@@ -20,7 +20,7 @@ types = ["TEXT", "TEXT", "INTEGER", "INTEGER", "INTEGER", "INTEGER", "TEXT", "IN
         "INTEGER", "TEXT", "TEXT", "INTEGER", "INTEGER", "TEXT",
         "TEXT", "INTEGER", "INTEGER", "TEXT", "TEXT",
         "INTEGER", "INTEGER", "TEXT", "INTEGER", "TEXT", "INTEGER", "INTEGER",
-        "TEXT", "TEXT", "TEXT", "TIMESTAMP", "TEXT",
+        "TEXT", "TEXT", "TEXT", "TEXT", "TEXT",
         "INTEGER", "INTEGER", "TEXT"]
 
 primary = 'ID'
