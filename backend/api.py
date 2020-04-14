@@ -7,7 +7,7 @@ api_bp = Blueprint('api', __name__, url_prefix='/api')
 class Spam(Resource):
     def get(self):
         dress = get_id("1030003")
-        return {'id': dress.id, 'name': dress.name}
+        return [{'name': dress.name, 'charaId': dress.chara_id}]
 
 
 api = Api(api_bp)

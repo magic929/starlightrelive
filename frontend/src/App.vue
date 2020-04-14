@@ -5,7 +5,7 @@
     </div>
     <el-menu :default-active="activeIndex" mode="horizontal" router>
       <el-menu-item index="home" :route="{path:'home'}">主页</el-menu-item>
-      <el-menu-item index="about" :route="{path:'about'}">少女索引</el-menu-item>
+      <el-menu-item index="dress" :route="{path:'dress'}">少女索引</el-menu-item>
       <el-menu-item index="data" :route="{name:'home'}">数据收集</el-menu-item>
       <el-menu-item index="strength" :route="{name: 'home'}">强度预测</el-menu-item>
       <el-menu-item>
