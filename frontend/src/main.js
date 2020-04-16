@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import Home from './components/Home.vue'
 import About from './components/About.vue'
+import Dress from './components/Dress.vue'
 import './plugins/element.js'
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -12,7 +13,8 @@ Vue.use(VueRouter)
 let router = new VueRouter({
   routes:[
     {path: '/', component: Home},
-    {path: '/about', component: About}
+    {path: '/about', component: About},
+    {path: '/dress', component: Dress},
   ]
 });
 
