@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from api import api_bp
-from models.dress import init_db
+from models.config import init_db
 
 app = Flask(__name__, static_folder="../frontend/dist/static", template_folder='../frontend/dist')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../starlightRe.db'

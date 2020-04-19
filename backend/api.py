@@ -1,16 +1,19 @@
 from flask import Blueprint
 from flask_restful import Api, Resource, reqparse
-from models.dress import get_id
+from models import dress
+from models import chara
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 parser = reqparse.RequestParser(trim=True)
 parser.add_argument('streth', type=dict, action='append')  
     
-class Spam(Resource):
+class Dress(Resource):
     def get(self):
-        dress = get_id("1030003")
-        return [{'name': dress.name, 'charaId': dress.chara_id}]
-    
+        dresses = dress.get_random_id()
+        for d in dresses:
+            d['charaId'] = chara.get_id(d['charaId']).name
+        return dresses
+
     def post(self):
         args = parser.parse_args()
         print("akb48")
@@ -18,4 +21,4 @@ class Spam(Resource):
         print(result)
 
 api = Api(api_bp)
-api.add_resource(Spam, '/dress')
+api.add_resource(Dress, '/dress')

@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from common import utils
+from models.config import *
 
-db = SQLAlchemy()
 
 class DressModel(db.Model):
     __tablename__ = 'dress'
@@ -56,5 +57,15 @@ def get_id(id):
     dressid = DressModel.query.filter_by(id=id).first()
     return dressid
 
-def init_db(app):
-    db.init_app(app)
+def get_all():
+    dressid = DressModel.query.all()
+    return dressid
+
+def get_random_id():
+    dressid = get_all()
+    idx = utils.rand_index(len(dressid))
+    result = []
+    for i in idx:
+        tmp = dressid[i]
+        result.append({"id": tmp.id, "name": tmp.name, "charaId": tmp.chara_id})
+    return result

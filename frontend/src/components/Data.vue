@@ -1,5 +1,5 @@
 <template>
-    <div class="dress">
+    <div class="data">
         <h1> This is a dress page</h1>
         <el-table class="dress-table" :data="dressData" stripe>
         <el-table-column prop="name" label="name" width="180"></el-table-column>

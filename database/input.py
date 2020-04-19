@@ -1,8 +1,7 @@
-import ast
-import re
 import sys
 
 from utils.sql_ops import Sqlite
+from utils import utils
 
 
 field = ["id", "name", "chara_id", "cost", "base_agi", "base_rarity", "growth_board3_id", "base_pdef", "delta_agi", 
@@ -25,35 +24,6 @@ types = ["TEXT", "TEXT", "INTEGER", "INTEGER", "INTEGER", "INTEGER", "TEXT", "IN
 
 primary = 'ID'
 
-def append_suffix(matched):
-    tempstr = matched.group()
-    tempstr = tempstr[0] + "\"" + tempstr[1:] + "\""
-    return tempstr
-
-def read_file(path):
-    with open(path, "r", encoding='utf8') as f:
-        data = f.read()
-    
-    data = data.replace("return", "").replace("=", ":").replace("[[", "\"").replace("]]", "\"")
-    data = re.sub(r"[\[\]\. ]", "", data)
-    data = re.sub(r"(\t|:)[a-zA-z0-9_]+", append_suffix, data)
-    data = re.sub(r"\s+", "", data)
-    with open("test.txt", "w", encoding="utf8") as f:
-        f.write(data)
-    data = ast.literal_eval(data)
-    result = []
-    for key, value in data.items():
-        tmp = [key]
-        for f in field[1:]:
-            if isinstance(value[f], dict):
-                tmp.append(value[f]['ja'])
-            else:
-                tmp.append(value[f])
-        
-        result.append(tuple(tmp))
-    
-    return result
-
 
 def insert_dress(data):
     dress = Sqlite("starlightRe.db")
@@ -63,5 +33,6 @@ def insert_dress(data):
 
 
 if __name__ == "__main__":
-    data = read_file(sys.argv[1])
+    data = utils.read_file(sys.argv[1], field)
+    # data = read_file(sys.argv[1])
     insert_dress(data)
