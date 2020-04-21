@@ -5,7 +5,7 @@ from models import chara
 
 api_bp = Blueprint('api', __name__, url_prefix='/api')
 parser = reqparse.RequestParser(trim=True)
-parser.add_argument('streth', type=dict, action='append')  
+parser.add_argument('strength', type=str, action='append')  
     
 class Dress(Resource):
     def get(self):
@@ -16,8 +16,7 @@ class Dress(Resource):
 
     def post(self):
         args = parser.parse_args()
-        print("akb48")
-        result = args["streth"]
+        result = args["strength"]
         print(result)
 
 api = Api(api_bp)

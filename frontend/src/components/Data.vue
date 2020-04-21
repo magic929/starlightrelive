@@ -1,13 +1,11 @@
 <template>
     <div class="data">
         <h1> This is a dress page</h1>
-        <el-table class="dress-table" :data="dressData" stripe>
+        <el-table class="dress-table" :data="dressData" @selection-change="handleSelectionChange" stripe>
+        <el-table-column prop="id" lable="id" width="180" v-if="show"></el-table-column>
         <el-table-column prop="name" label="name" width="180"></el-table-column>
         <el-table-column prop="charaId" label="charaId" width="180"></el-table-column>
-        <el-table-column label="select">
-            <template slot-scope="scope">
-                <el-checkbox v-model="scope.row.checked"></el-checkbox> 
-            </template>
+        <el-table-column label="select" type="selection" width="180">
         </el-table-column>
         </el-table>
         <el-row>
@@ -25,7 +23,8 @@ const axios =
 export default {
     data(){
         return {
-            dressData: []
+            dressData: [],
+            multipleSelection: []
         }
     },
     methods: {
@@ -34,11 +33,18 @@ export default {
             this.dressData = response.data
         },
         PostData: async function (){
-            let test = {"streth": [{"name": "123", "charaId": "234"}, {"name": "234", "charaId": "345"}]}
-            await axios.post('/api/dress', test)
+            let result = []
+            for(var v of this.multipleSelection){
+                result.push(v.id)
+            }
+            await axios.post('/api/dress', {"strength": result})
             .then(res=>{
                 console.log('res=>', res)
             })
+        },
+        handleSelectionChange(val){
+            this.multipleSelection = val
+            console.log(this.multipleSelection)
         }
     },
     mounted(){
