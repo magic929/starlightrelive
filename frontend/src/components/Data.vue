@@ -2,6 +2,11 @@
     <div class="data">
         <h1> This is a dress page</h1>
         <el-table class="dress-table" :data="dressData" @selection-change="handleSelectionChange" stripe>
+        <el-table-column prob="img_url" label="img" width="180">
+            <template slot-scope="scope">
+                <img :src="scope.row.img_url" width="60" height="60"/>
+            </template>
+        </el-table-column>
         <el-table-column prop="id" lable="id" width="180" v-if="show"></el-table-column>
         <el-table-column prop="name" label="name" width="180"></el-table-column>
         <el-table-column prop="charaId" label="charaId" width="180"></el-table-column>

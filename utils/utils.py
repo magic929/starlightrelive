@@ -29,3 +29,9 @@ def read_file(path, field):
         result.append(tuple(tmp))
     
     return result
+
+def read_image(path):
+    with open(path, 'r', encoding='utf8') as f:
+        result = [tuple(l.split(' ')) for l in f]
+    
+    return result
