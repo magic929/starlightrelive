@@ -26,6 +26,7 @@ const axios =
     ? require('axios').create({baseURL: 'http://localhost:3000'})
     : require('axios').create()
 export default {
+    inject: ['reload'],
     data(){
         return {
             dressData: [],
@@ -43,8 +44,8 @@ export default {
                 result.push(v.id)
             }
             await axios.post('/api/dress', {"strength": result})
-            .then(res=>{
-                console.log('res=>', res)
+            .then(()=>{
+                this.reload()
             })
         },
         handleSelectionChange(val){

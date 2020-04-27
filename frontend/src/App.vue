@@ -12,17 +12,28 @@
         <a href="https://element.eleme.io" target="_blank">Link</a>
       </el-menu-item>
     </el-menu> 
-    <router-view />
+    <router-view v-if="isRouterAlive"/>
   </div>
 </template>
 
 <script>
 export default {
   name: 'app',
+  provide(){
+    return {
+        reload: this.reload
+      }
+  },
   data () {
-    console.log(this.$route.name)
     return{
+      isRouterAlive: true,
       activeIndex: this.$route.name
+    }
+  },
+  methods: {
+    reload() {
+      this.isRouterAlive = false,
+      this.$nextTick(() => (this.isRouterAlive = true))
     }
   }
 }
