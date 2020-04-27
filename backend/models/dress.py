@@ -61,8 +61,13 @@ def get_all():
     dressid = DressModel.query.all()
     return dressid
 
+
+def get_rarity_all(rarity):
+    dressid = DressModel.query.filter_by(base_rarity=rarity).all()
+    return dressid
+
 def get_random_id():
-    dressid = get_all()
+    dressid = get_rarity_all(4)
     idx = utils.rand_index(len(dressid))
     result = []
     for i in idx:
