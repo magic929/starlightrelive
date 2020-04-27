@@ -1,6 +1,6 @@
 from models.config import *
 
-class TestModel(db.Model):
+class CharaModel(db.Model):
     __tablename__ = 'chara'
 
     id = db.Column(db.INTEGER, primary_key=True)
@@ -15,5 +15,5 @@ class TestModel(db.Model):
     introduction = db.Column(db.TEXT)
 
 def get_id(id):
-    result = TestModel.query.filter_by(id=id).first()
+    result = CharaModel.query.filter_by(id=id).first()
     return result
