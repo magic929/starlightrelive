@@ -43,10 +43,25 @@ export default {
             for(var v of this.multipleSelection){
                 result.push(v.id)
             }
-            await axios.post('/api/dress', {"strength": result})
-            .then(()=>{
-                this.reload()
-            })
+            this.$confirm('是否确认选择该舞台少女们', '提示', {
+                confirmButtonText: '确定', 
+                cancelButtonText: '取消',
+                type: 'info'
+            }).then(async () => {
+                 await axios.post('/api/dress', {"strength": result})
+                    .then(()=>{
+                        this.$message({
+                            type: 'success',
+                            message: '选择成功'
+                        });
+                        this.reload();
+                        this.updateDressData()})
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '取消选择'
+                });
+            });
         },
         handleSelectionChange(val){
             this.multipleSelection = val
