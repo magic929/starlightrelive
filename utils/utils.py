@@ -35,3 +35,21 @@ def read_image(path):
         result = [tuple(l.split(' ')) for l in f]
     
     return result
+
+def read_fix(path, field):
+    with open(path, 'r', encoding='utf8') as f:
+        data = f.read()
+    # print(data)
+    data = ast.literal_eval(data)
+    result = []
+    for item in data:
+        tmp = []
+        for f in field:
+            if isinstance(item[f], dict):
+                tmp.append(item[f]['ja'])
+            elif isinstance(item[f], list):
+                tmp.append(','.join(item[f]))
+        
+        result.append(tuple(tmp))
+    
+    return result
