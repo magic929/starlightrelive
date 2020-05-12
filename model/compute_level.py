@@ -29,7 +29,7 @@ def insert_level(data):
     inserted = []
     for l, chara in data.items():
         for c in chara:
-            tmp = (c[0], c[1], l)
+            tmp = (c[0], l, c[1])
             inserted.append(tmp)
     
     # print(type(level))

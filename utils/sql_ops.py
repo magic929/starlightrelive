@@ -77,6 +77,9 @@ class SqlOps():
     def delete(self):
         pass
 
+    def close(self):
+        self.c.close()
+        self.conn.close()
 
 class LevelOps(SqlOps):
     def __init__(self):
