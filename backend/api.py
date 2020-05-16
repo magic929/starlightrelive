@@ -27,8 +27,18 @@ class Dress(Resource):
 
 class Level(Resource):
     def get(self):
-        result = level.get_level_card()
-        print(result)
+        result = {}
+        ids = level.get_level_card()
+        for l, cha in ids.items():
+            infos = []
+            for c in cha:
+                info = {}
+                info['id'] = c
+                info['url'] = img.get_id(c).img_url.strip()
+                info['name'] = dress.get_id(c).name
+                infos.append(info)
+            result[l] = infos
+        
         return result   
 
 
