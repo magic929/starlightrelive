@@ -11,8 +11,8 @@
             <h2 style="text-align:left">ss</h2>
             <el-row>
                 <el-col :span="1" v-for="(item, index) of level.ss" :key="item.id" :offset="index > 0 ? 1 : 0">
-                    <el-card :body-style="{ padding: '0px'}" shadow="hover" style="width: 120px;height: 160px;">
-                        <img :src="item.url">
+                    <el-card :body-style="{ padding: '0px'}" shadow="hover">
+                        <img :src="item.url" class="image">
                         <div>
                             <span>{{item.name}}</span>
                             <!-- <span>test</span> -->
@@ -23,8 +23,8 @@
             <h2 style="text-align:left">s</h2>
             <el-row>
                 <el-col :span="1" v-for="(item, index) of level.s" :key="item.id" :offset="index > 0 ? 1 : 0">
-                    <el-card :body-style="{ padding: '0px'}" shadow="hover" style="width: 120px;height: 160px;">
-                        <img :src="item.url">
+                    <el-card :body-style="{ padding: '0px'}" shadow="hover" class="box-card">
+                        <img :src="item.url" class="image">
                         <div>
                             <span>{{item.name}}</span>
                         </div>
@@ -34,7 +34,7 @@
             <h2 style="text-align:left">a</h2>
             <el-row>
                 <el-col :span="1" v-for="(item, index) of level.a" :key="item.id" :offset="index > 0 ? 1 : 0">
-                    <el-card :body-style="{ padding: '0px'}" shadow="hover" style="width: 120px;height: 160px;">
+                    <el-card :body-style="{ padding: '0px'}" shadow="hover">
                         <img :src="item.url">
                         <div>
                             <span>{{item.name}}</span>
@@ -56,6 +56,22 @@
         </div>
     </div>
 </template>
+
+<style>
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+   .box-card {
+    width: 150%;
+  }
+</style>
 
 <script>
 const axios = process.env.VUE_APP_RESET_SERVER ==='json-mock'
