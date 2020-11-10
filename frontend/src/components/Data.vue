@@ -1,7 +1,7 @@
 <template>
     <div class="data">
         <h1> This is a dress page</h1>
-        <el-table class="dress-table" :data="dressData" @selection-change="handleSelectionChange" stripe>
+        <el-table ref="multipleTable" class="dress-table" :data="dressData" @selection-change="handleSelectionChange" stripe>
         <el-table-column prob="img_url" label="img" width="180">
             <template slot-scope="scope">
                 <img :src="scope.row.img_url" width="60" height="60"/>
@@ -43,6 +43,15 @@ export default {
             for(var v of this.multipleSelection){
                 result.push(v.id)
             }
+            if (result.length != 5){
+                this.$alert('请选择5名舞台少女', '警告',{
+                    confirmButtonText: '确定',
+                    callback: () => {
+                        this.$refs.multipleTable.clearSelection();
+                    }
+                });
+                return;
+            }
             this.$confirm('是否确认选择该舞台少女们', '提示', {
                 confirmButtonText: '确定', 
                 cancelButtonText: '取消',
@@ -65,7 +74,6 @@ export default {
         },
         handleSelectionChange(val){
             this.multipleSelection = val
-            console.log(this.multipleSelection)
         }
     },
     mounted(){
